@@ -11,27 +11,24 @@ CONFIG += static
 # Change paths if needed, these use the foocoin/deps.git repository locations
 
 
-windows:LIBS += -lshlwapi
-LIBS += $$join(BOOST_LIB_PATH,,-L,) $$join(BDB_LIB_PATH,,-L,) $$join(OPENSSL_LIB_PATH,,-L,) $$join(QRENCODE_LIB_PATH,,-L,)
-LIBS += -lssl -lcrypto -ldb_cxx$$BDB_LIB_SUFFIX
-windows:LIBS += -lws2_32 -lole32 -loleaut32 -luuid -lgdi32
-
-# Dependency library locations can be customized with:
-#    BOOST_INCLUDE_PATH, BOOST_LIB_PATH, BDB_INCLUDE_PATH,
-#    BDB_LIB_PATH, OPENSSL_INCLUDE_PATH and OPENSSL_LIB_PATH respectively
-
-BOOST_LIB_SUFFIX=-mgw48-mt-s-1_55
-BOOST_INCLUDE_PATH=C:/deps/boost_1_55_0
-BOOST_LIB_PATH=C:/deps/boost_1_55_0/stage/lib
-BDB_INCLUDE_PATH=C:/deps/db-4.8.30.NC/build_unix
-BDB_LIB_PATH=C:/deps/db-4.8.30.NC/build_unix
-OPENSSL_INCLUDE_PATH=C:/deps/openssl-1.0.1g/include
-OPENSSL_LIB_PATH=C:/deps/openssl-1.0.1g
-MINIUPNPC_INCLUDE_PATH=C:/deps/
-MINIUPNPC_LIB_PATH=C:/deps/miniupnpc
-QRENCODE_INCLUDE_PATH=C:/deps/qrencode-3.4.3
-QRENCODE_LIB_PATH=C:/deps/qrencode-3.4.3/.libs
-
+win32 {
+    windows:LIBS += -lshlwapi
+    LIBS += $$join(BOOST_LIB_PATH,,-L,) $$join(BDB_LIB_PATH,,-L,) $$join(OPENSSL_LIB_PATH,,-L,) $$join(QRENCODE_LIB_PATH,,-L,)
+    LIBS += -lssl -lcrypto -ldb_cxx$$BDB_LIB_SUFFIX
+    windows:LIBS += -lws2_32 -lole32 -loleaut32 -luuid -lgdi32
+    LIBS += -lboost_system-mgw48-mt-s-1_55 -lboost_filesystem-mgw48-mt-s-1_55 -lboost_program_options-mgw48-mt-s-1_55 -lboost_thread-mgw48-mt-s-1_55
+	BOOST_LIB_SUFFIX=-mgw48-mt-s-1_55
+	#BOOST_INCLUDE_PATH=C:/deps/boost_1_55_0
+	#BOOST_LIB_PATH=C:/deps/boost_1_55_0/stage/lib
+	#BDB_INCLUDE_PATH=C:/deps/db-4.8.30.NC/build_unix
+	#BDB_LIB_PATH=C:/deps/db-4.8.30.NC/build_unix
+	#OPENSSL_INCLUDE_PATH=C:/deps/openssl-1.0.1e/include
+	#OPENSSL_LIB_PATH=C:/deps/openssl-1.0.1e
+	#MINIUPNPC_INCLUDE_PATH=C:/deps/
+	#MINIUPNPC_LIB_PATH=C:/deps/miniupnpc
+    #QRENCODE_INCLUDE_PATH=C:/deps/qrcode-win32-3.1.1/include
+    #QRENCODE_LIB_PATH=C:/deps/qrcode-win32-3.1.1/dll
+}
 
 
 OBJECTS_DIR = build
