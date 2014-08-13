@@ -104,7 +104,7 @@ OBJS= \
     obj/scrypt-x86.o \
     obj/scrypt-x86_64.o
 
-all: Axisd.exe
+all: SSVCoind.exe
 
 obj/build.h: FORCE
 	/bin/sh ../share/genbuild.sh obj/build.h
@@ -117,7 +117,7 @@ obj/%.o: %.cpp $(HEADERS)
 obj/%.o: %.c $(HEADERS)
 	i586-mingw32msvc-g++ -c $(CFLAGS) -fpermissive -o $@ $<
 
-Axisd.exe: $(OBJS:obj/%=obj/%)
+SSVCoind.exe: $(OBJS:obj/%=obj/%)
 	i586-mingw32msvc-g++ $(CFLAGS) $(LDFLAGS) -o $@ $(LIBPATHS) $^ $(LIBS)
 
 TESTOBJS := $(patsubst test/%.cpp,obj-test/%.o,$(wildcard test/*.cpp))
@@ -136,7 +136,7 @@ obj/scrypt-x86_64.o: scrypt-x86_64.S
 
 clean:
 	-rm -f obj/*.o
-	-rm -f Axisd.exe
+	-rm -f SSVCoind.exe
 	-rm -f obj-test/*.o
 	-rm -f test_Axis.exe
 	-rm -f obj/build.h

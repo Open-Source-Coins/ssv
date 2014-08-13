@@ -149,7 +149,7 @@ OBJS= \
     obj/scrypt-x86_64.o
 
 
-all: Axisd
+all: SSVCoind
 
 test check: test_Axis FORCE
 	./test_Axis
@@ -184,7 +184,7 @@ obj/%.o: %.c
 	rm -f $(@:%.o=%.d)
 
 
-Axisd: $(OBJS:obj/%=obj/%)
+SSVCoind: $(OBJS:obj/%=obj/%)
 	$(LINK) $(xCXXFLAGS) -o $@ $^ $(xLDFLAGS) $(LIBS)
 
 TESTOBJS := $(patsubst test/%.cpp,obj-test/%.o,$(wildcard test/*.cpp))
@@ -200,7 +200,7 @@ test_Axis: $(TESTOBJS) $(filter-out obj/init.o,$(OBJS:obj/%=obj/%))
 	$(LINK) $(xCXXFLAGS) -o $@ $(LIBPATHS) $^ -Wl,-B$(LMODE) -lboost_unit_test_framework $(xLDFLAGS) $(LIBS)
 
 clean:
-	-rm -f Axisd test_Axis
+	-rm -f SSVCoind test_Axis
 	-rm -f obj/*.o
 	-rm -f obj-test/*.o
 	-rm -f obj/*.P
